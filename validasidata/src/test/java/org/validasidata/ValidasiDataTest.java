@@ -11,8 +11,11 @@ class ValidasiDataTest {
         assertEquals(ValidasiData.validasi(80, 80, 85), true);
     }
 
-    @Test void validasiDataIsInvalid() {
-        assertEquals(ValidasiData.validasi(80, 120, 85), false);
-        
+    @Test void validasiDataBatasBawah() {
+        assertEquals(ValidasiData.validasi(0, 0, 0), false);
+    }
+
+    @Test void validasiDataBatasAtas() {
+        assertEquals(ValidasiData.validasi(120, 80, 85), false);
     }
 }

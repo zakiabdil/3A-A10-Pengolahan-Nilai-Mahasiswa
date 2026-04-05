@@ -4,6 +4,8 @@
 package org.example;
 import org.validasidata.ValidasiData;
 import org.perhitungannilaiakhir.PerhitunganNilaiAkhir;
+import org.penentuangrade.PenentuanGrade;
+import org.penentuankelulusan.PenentuanKelulusan;
 import java.util.Scanner;
 
 public class App {
@@ -11,6 +13,8 @@ public class App {
     private static double nilaiUts;
     private static double nilaiUas;
     private static double nilaiAkhir;
+    private static char grade;
+    private static boolean lulus= false;
     private static boolean selesai = false;
     private static Scanner scanner = new Scanner(System.in);
 
@@ -42,6 +46,14 @@ public class App {
                     // Menghitung nilai akhir jika data valid
                     nilaiAkhir = PerhitunganNilaiAkhir.hitungNilaiAkhir(nilaiTugas, nilaiUts, nilaiUas);
                     System.out.println("Nilai Akhir: " + nilaiAkhir);
+
+                    // Menentukan grade berdasarkan nilai akhir
+                    grade = PenentuanGrade.penentuanGrade(nilaiAkhir);
+                    System.out.println("Grade: " + grade + "\n");
+
+                    // Menentukan kelulusan berdasarkan nilai akhir
+                    lulus = PenentuanKelulusan.penentuanKelulusan(nilaiAkhir);
+                    System.out.println("Status Kelulusan: " + (lulus ? "Lulus" : "Tidak Lulus") + "\n");
                 }
 
                 System.out.print("Selesai: (ya/tidak)?");

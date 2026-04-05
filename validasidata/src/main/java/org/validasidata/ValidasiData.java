@@ -11,6 +11,9 @@ public class ValidasiData {
             nilaiUas < 0 || nilaiUas > 100) {
             return false;
         }
+        if (nilaiTugas == 0 && nilaiUts == 0 && nilaiUas == 0) {
+            return false;
+        }
         return true;
     }
 }

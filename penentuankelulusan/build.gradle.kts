@@ -23,10 +23,6 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
-    implementation(project(":validasidata"))
-    implementation(project(":perhitungannilaiakhir"))
-    implementation(project(":penentuangrade"))
-    implementation(project(":penentuankelulusan"))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -38,9 +34,15 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "org.penentuankelulusan.PenentuanKelulusan"
 }
 
-tasks.named<JavaExec>("run") {
-    standardInput = System.`in` // Agar aplikasi bisa menerima input dari terminal
+tasks.named<Test>("test") {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+    // Memastikan laporan HTML dan XML selalu di-generate
+    reports {
+        html.required.set(true)
+        junitXml.required.set(true)
+    }
 }
