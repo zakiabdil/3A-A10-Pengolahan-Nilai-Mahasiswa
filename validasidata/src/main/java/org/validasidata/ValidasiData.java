@@ -4,10 +4,6 @@
 package org.validasidata;
 
 public class ValidasiData {
-    public static Integer test() {
-        return 42;
-    }
-
     public static boolean validasi(double nilaiTugas, double nilaiUts, double nilaiUas) {
         // Validasi: Semua nilai harus antara 0 dan 100, dan tidak semua boleh 0
         if (nilaiTugas < 0 || nilaiTugas > 100 ||

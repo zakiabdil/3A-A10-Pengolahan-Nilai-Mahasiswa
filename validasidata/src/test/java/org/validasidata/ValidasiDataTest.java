@@ -7,8 +7,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidasiDataTest {
-    @Test void validasiDataHasCorrectValue() {
-        Integer result = ValidasiData.test();
-        assertEquals(42, result, "ValidasiData.test() should return 42");
+    @Test void validasiDataIsValid() {
+        assertEquals(ValidasiData.validasi(80, 80, 85), true);
+    }
+
+    @Test void validasiDataIsInvalid() {
+        assertEquals(ValidasiData.validasi(80, 120, 85), false);
+        
     }
 }

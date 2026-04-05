@@ -3,18 +3,16 @@
  */
 package org.example;
 import org.validasidata.ValidasiData;
+import org.perhitungannilaiakhir.PerhitunganNilaiAkhir;
 import java.util.Scanner;
 
 public class App {
     private static double nilaiTugas;
     private static double nilaiUts;
     private static double nilaiUas;
+    private static double nilaiAkhir;
     private static boolean selesai = false;
     private static Scanner scanner = new Scanner(System.in);
-
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
         boolean valid = false;
@@ -40,6 +38,10 @@ public class App {
                     System.out.println("Silakan input ulang.\n");
                 }else{
                     System.out.println("\nData valid! Nilai Tugas: " + nilaiTugas + ", Nilai UTS: " + nilaiUts + ", Nilai UAS: " + nilaiUas + "\n");
+                    
+                    // Menghitung nilai akhir jika data valid
+                    nilaiAkhir = PerhitunganNilaiAkhir.hitungNilaiAkhir(nilaiTugas, nilaiUts, nilaiUas);
+                    System.out.println("Nilai Akhir: " + nilaiAkhir);
                 }
 
                 System.out.print("Selesai: (ya/tidak)?");

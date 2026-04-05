@@ -24,6 +24,7 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation(project(":validasidata"))
+    implementation(project(":perhitungannilaiakhir"))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -36,11 +37,6 @@ java {
 application {
     // Define the main class for the application.
     mainClass = "org.example.App"
-}
-
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
 }
 
 tasks.named<JavaExec>("run") {
