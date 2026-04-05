@@ -14,11 +14,7 @@ File `settings.gradle.kts` menggabungkan semua modul ini sebagai subproyek Gradl
 
 ## Persiapan
 
-Pastikan Anda menggunakan Windows dan menjalankan perintah Gradle dari folder root proyek:
-
-```powershell
-cd "c:\1Tugas Polban\Semester 6\PR Pengujian Perangkat Lunak\Minggu 6\Program Pengolahan Nilai Mahasiswa - Copy\3A-A10-Pengolahan-Nilai-Mahasiswa"
-```
+Pastikan Anda menggunakan Windows dan menjalankan perintah Gradle dari folder root proyek
 
 ## Perintah Penting
 
