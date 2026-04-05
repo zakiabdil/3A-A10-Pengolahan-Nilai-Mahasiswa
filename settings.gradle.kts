@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "3A-A10-Pengolahan-Nilai-Mahasiswa"
-include("app", "list", "utilities")
+include("app", "validasidata")

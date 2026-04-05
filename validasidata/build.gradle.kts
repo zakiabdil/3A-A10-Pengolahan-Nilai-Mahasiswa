@@ -23,7 +23,6 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
-    implementation(project(":validasidata"))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -35,14 +34,10 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "org.validasidata.ValidasiData"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
-}
-
-tasks.named<JavaExec>("run") {
-    standardInput = System.`in` // Agar aplikasi bisa menerima input dari terminal
 }
