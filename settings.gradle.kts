@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "3A-A10-Pengolahan-Nilai-Mahasiswa"
-include("penentuankelulusan", "penentuangrade", "perhitungannilaiakhir", "app", "validasidata")
+include("app")

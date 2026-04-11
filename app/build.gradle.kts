@@ -21,12 +21,6 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // This dependency is used by the application.
-    implementation(libs.guava)
-    implementation(project(":validasidata"))
-    implementation(project(":perhitungannilaiakhir"))
-    implementation(project(":penentuangrade"))
-    implementation(project(":penentuankelulusan"))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -43,4 +37,12 @@ application {
 
 tasks.named<JavaExec>("run") {
     standardInput = System.`in` // Agar aplikasi bisa menerima input dari terminal
+}
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+    reports {
+        html.required.set(true)
+        junitXml.required.set(true)
+    }
 }
