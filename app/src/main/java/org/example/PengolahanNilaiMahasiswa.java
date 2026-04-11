@@ -51,7 +51,7 @@ public class PengolahanNilaiMahasiswa {
     }
 
     public String tentukanStatusKelulusan(double nilaiAkhir) {
-        return nilaiAkhir >= 60 ? "Lulus" : "Tidak Lulus";
+        return nilaiAkhir > 60 ? "Lulus" : "Tidak Lulus";
     }
 
     public HasilPengolahan proses(Mahasiswa mahasiswa) {
