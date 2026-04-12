@@ -14,8 +14,13 @@ class PengolahanNilaiMahasiswaTest {
     }
 
     @Test
-    void validasiSemuaNolTidakValid() {
+    void validasiNilaiTidakValid() {
         assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(0, 0, 0));
+    }
+
+    @Test
+    void validasiNilaiDiLuarRentangTidakValid() {
+        assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(120, 80, 90));
     }
 
     @Test
@@ -24,12 +29,12 @@ class PengolahanNilaiMahasiswaTest {
     }
 
     @Test
-    void hitungNilaiAkhirInvalidMengembalikanMinusSatu() {
-        assertEquals(-1.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(-1, 80, 85), 0.0001);
+    void hitungNilaiAkhirInvalid() {
+        assertEquals(-1.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(-1, 80, 90), 0.0001);
     }
 
     @Test
-    void tentukanGradeSesuaiRentang() {
+    void tentukanGrade() {
         assertEquals('A', pengolahanNilaiMahasiswa.tentukanGrade(85));
         assertEquals('B', pengolahanNilaiMahasiswa.tentukanGrade(70));
         assertEquals('C', pengolahanNilaiMahasiswa.tentukanGrade(60));
@@ -38,13 +43,13 @@ class PengolahanNilaiMahasiswaTest {
     }
 
     @Test
-    void tentukanStatusSesuaiBatasKelulusan() {
+    void tentukanStatusKelulusan() {
         assertEquals("Lulus", pengolahanNilaiMahasiswa.tentukanStatusKelulusan(60));
         assertEquals("Tidak Lulus", pengolahanNilaiMahasiswa.tentukanStatusKelulusan(59));
     }
 
     @Test
-    void prosesMenghasilkanNilaiAkhirGradeDanStatus() {
+    void prosesMenghasilkanHasil() {
         PengolahanNilaiMahasiswa.Mahasiswa mahasiswa = new PengolahanNilaiMahasiswa.Mahasiswa("Budi", 80, 80, 85);
 
         PengolahanNilaiMahasiswa.HasilPengolahan hasil = pengolahanNilaiMahasiswa.proses(mahasiswa);
@@ -55,7 +60,7 @@ class PengolahanNilaiMahasiswaTest {
     }
 
     @Test
-    void prosesMelemparExceptionJikaDataTidakValid() {
+    void prosesMelemparException() {
         PengolahanNilaiMahasiswa.Mahasiswa mahasiswa = new PengolahanNilaiMahasiswa.Mahasiswa("Ani", 0, 0, 0);
 
         assertThrows(IllegalArgumentException.class, () -> pengolahanNilaiMahasiswa.proses(mahasiswa));
