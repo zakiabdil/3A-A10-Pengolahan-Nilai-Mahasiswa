@@ -9,18 +9,28 @@ class PengolahanNilaiMahasiswaTest {
     private final PengolahanNilaiMahasiswa pengolahanNilaiMahasiswa = new PengolahanNilaiMahasiswa();
 
     @Test
-    void validasiNilaiValid() {
-        assertEquals(true, pengolahanNilaiMahasiswa.isNilaiValid(80, 80, 85));
+    void TC1_P1_validasiNilaiNormal() {
+        assertEquals(true, pengolahanNilaiMahasiswa.isNilaiValid(80, 75, 90));
     }
 
     @Test
-    void validasiNilaiTidakValid() {
+    void TC2_P2_nilaiTugasTidakValid() {
+        assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(-1, 75, 90));
+    }
+
+    @Test
+    void TC3_P3_nilaiUtsTidakValid() {
+        assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(80, 120, 90));
+    }
+
+    @Test
+    void TC4_P4_nilaiUasTidakValid() {
+        assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(80, 75, -10));
+    }
+
+    @Test
+    void TC5_P5_semuaNilaiNol() {
         assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(0, 0, 0));
-    }
-
-    @Test
-    void validasiNilaiDiLuarRentangTidakValid() {
-        assertEquals(false, pengolahanNilaiMahasiswa.isNilaiValid(120, 80, 90));
     }
 
     @Test

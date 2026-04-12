@@ -18,10 +18,7 @@ public class PengolahanNilaiMahasiswa {
             System.out.print("Masukkan Nilai UAS (0-100)    : ");
             double nilaiUas = Double.parseDouble(scanner.nextLine().trim());
 
-            if ((nilaiTugas >= 0 && nilaiTugas <= 100)
-                    && (nilaiUts >= 0 && nilaiUts <= 100)
-                    && (nilaiUas >= 0 && nilaiUas <= 100)
-                    && !(nilaiTugas == 0 && nilaiUts == 0 && nilaiUas == 0)) {
+            if (isNilaiValid(nilaiTugas, nilaiUts, nilaiUas)) {
                 return new Mahasiswa(nama, nilaiTugas, nilaiUts, nilaiUas);
             }
 
@@ -30,10 +27,23 @@ public class PengolahanNilaiMahasiswa {
     }
 
     public boolean isNilaiValid(double nilaiTugas, double nilaiUts, double nilaiUas) {
-        return (nilaiTugas >= 0 && nilaiTugas <= 100)
-                && (nilaiUts >= 0 && nilaiUts <= 100)
-                && (nilaiUas >= 0 && nilaiUas <= 100)
-                && !(nilaiTugas == 0 && nilaiUts == 0 && nilaiUas == 0);
+        if (nilaiTugas < 0 || nilaiTugas > 100) {
+            return false;
+        }
+
+        if (nilaiUts < 0 || nilaiUts > 100) {
+            return false;
+        }
+
+        if (nilaiUas < 0 || nilaiUas > 100) {
+            return false;
+        }
+
+        if (nilaiTugas == 0 && nilaiUts == 0 && nilaiUas == 0) {
+            return false;
+        }
+
+        return true;
     }
 
     public double hitungNilaiAkhir(double nilaiTugas, double nilaiUts, double nilaiUas) {
@@ -42,7 +52,12 @@ public class PengolahanNilaiMahasiswa {
         }
 
         double nilaiAkhir = (0.3 * nilaiTugas) + (0.3 * nilaiUts) + (0.4 * nilaiUas);
-        return nilaiAkhir > 100 ? -1 : nilaiAkhir;
+
+        if (nilaiAkhir > 100) {
+            return -1;
+        }
+
+        return nilaiAkhir;
     }
 
     public char tentukanGrade(double nilaiAkhir) {
@@ -63,7 +78,11 @@ public class PengolahanNilaiMahasiswa {
     }
 
     public String tentukanStatusKelulusan(double nilaiAkhir) {
-        return nilaiAkhir >= 60 ? "Lulus" : "Tidak Lulus";
+        if (nilaiAkhir >= 60) {
+            return "Lulus";
+        }
+
+        return "Tidak Lulus";
     }
 
     public HasilPengolahan proses(Mahasiswa mahasiswa) {
