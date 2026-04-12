@@ -50,6 +50,7 @@ tasks.named<Test>("test") {
     }
     testLogging {
         events("passed", "skipped", "failed")
+        showStandardStreams = true
         showExceptions = true
         showCauses = true
         showStackTraces = true
