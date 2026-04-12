@@ -41,8 +41,18 @@ tasks.named<JavaExec>("run") {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+    // Stabilkan eksekusi test pada mesin dengan memori terbatas
+    maxParallelForks = 1
+    maxHeapSize = "256m"
     reports {
         html.required.set(true)
         junitXml.required.set(true)
+    }
+    testLogging {
+        events("passed", "skipped", "failed")
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.SHORT
     }
 }

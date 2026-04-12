@@ -2,6 +2,10 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -34,13 +38,18 @@ class PengolahanNilaiMahasiswaTest {
     }
 
     @Test
-    void hitungNilaiAkhirValid() {
-        assertEquals(82.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(80, 80, 85), 0.0001);
+    void TC1_P1_hitungNilaiAkhirInvalidInput() {
+        assertEquals(-1.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(-1, 80, 90), 0.0001);
     }
 
     @Test
-    void hitungNilaiAkhirInvalid() {
-        assertEquals(-1.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(-1, 80, 90), 0.0001);
+    void TC2_P2_hitungNilaiAkhirLebihDari100() {
+        assertEquals(-1.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(200, 200, 200), 0.0001);
+    }
+
+    @Test
+    void TC3_P3_hitungNilaiAkhirValidNormal() {
+        assertEquals(82.0, pengolahanNilaiMahasiswa.hitungNilaiAkhir(80, 80, 85), 0.0001);
     }
 
     @Test
@@ -74,5 +83,31 @@ class PengolahanNilaiMahasiswaTest {
         PengolahanNilaiMahasiswa.Mahasiswa mahasiswa = new PengolahanNilaiMahasiswa.Mahasiswa("Ani", 0, 0, 0);
 
         assertThrows(IllegalArgumentException.class, () -> pengolahanNilaiMahasiswa.proses(mahasiswa));
+    }
+
+    @Test
+    void mintaInputMengembalikanMahasiswaSaatDataValid() {
+        String input = "Budi\n80\n75\n90\n";
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
+
+        PengolahanNilaiMahasiswa.Mahasiswa mahasiswa = pengolahanNilaiMahasiswa.mintaInput(scanner);
+
+        assertEquals("Budi", mahasiswa.nama());
+        assertEquals(80.0, mahasiswa.nilaiTugas(), 0.0001);
+        assertEquals(75.0, mahasiswa.nilaiUts(), 0.0001);
+        assertEquals(90.0, mahasiswa.nilaiUas(), 0.0001);
+    }
+
+    @Test
+    void mintaInputMengulangSampaiDataValid() {
+        String input = "Ani\n-1\n70\n80\nAni\n80\n70\n90\n";
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
+
+        PengolahanNilaiMahasiswa.Mahasiswa mahasiswa = pengolahanNilaiMahasiswa.mintaInput(scanner);
+
+        assertEquals("Ani", mahasiswa.nama());
+        assertEquals(80.0, mahasiswa.nilaiTugas(), 0.0001);
+        assertEquals(70.0, mahasiswa.nilaiUts(), 0.0001);
+        assertEquals(90.0, mahasiswa.nilaiUas(), 0.0001);
     }
 }
